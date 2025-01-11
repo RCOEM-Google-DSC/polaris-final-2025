@@ -55,19 +55,6 @@ const ButtonGroup = styled.div`
   margin-top: 1.5rem;
 `;
 
-const ModalButton = styled.button`
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.2s;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-
 
 // Add Modal Props Interface
 interface ModalProps {
