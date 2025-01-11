@@ -9,7 +9,7 @@ import Header from "../components/Header";
 import Loading from "../components/Loading";
 import SpidermanHero from "@/assets/spider-man.png";
 import Spidercraft from "@/assets/spidercraft.png";
-import Link from "next/link";
+
 import {
   Container,
   WrapperContent,
