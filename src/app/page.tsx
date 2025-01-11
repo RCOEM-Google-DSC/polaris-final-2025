@@ -68,15 +68,6 @@ const ModalButton = styled.button`
   }
 `;
 
-const RBUButton = styled(ModalButton)`
-  background: #ff0000;
-  color: white;
-`;
-
-const OtherButton = styled(ModalButton)`
-  background: #333;
-  color: white;
-`;
 
 // Add Modal Props Interface
 interface ModalProps {
