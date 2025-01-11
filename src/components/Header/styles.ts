@@ -107,16 +107,6 @@ export const NavLink = styled.a`
   }
 `;
 
-export const NavSocial = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media screen and (max-width: 960px) {
-    display: none;
-  }
-`;
-
 
 export const BurgerMenu = styled.div`
   width: 40px;
@@ -184,14 +174,14 @@ const openMobileMenu = keyframes`
   }
   to{
     opacity: 1;
-    height: 170px;
+    height: 100px;
   }
 `;
 
 const closeMobileMenu = keyframes`
   from {    
     opacity: 1;
-    height: 170px;
+    height: 100px;
   }
   to{
     opacity: 0;
@@ -211,7 +201,7 @@ export const NavListMobile = styled.div`
   background-color: var(--red-dark);
 
   width: 100%;
-  height: 170px;
+  height: 100px;
 
   opacity: 0;
 

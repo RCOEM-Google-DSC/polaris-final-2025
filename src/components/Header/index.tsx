@@ -51,13 +51,10 @@ function Header() {
             <NavLink>Home</NavLink>
           </li>
           <li>
-            <NavLink>Story</NavLink>
+            <NavLink>Event</NavLink>
           </li>
           <li>
-            <NavLink>Wallpapers</NavLink>
-          </li>
-          <li>
-            <NavLink>#BeYourself</NavLink>
+            <NavLink>About Us</NavLink>
           </li>
         </NavListMobile>
       </Nav>

@@ -3,6 +3,7 @@
 import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 import BackgroundLines from "../components/BackgroundLines";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Header from "../components/Header";
@@ -24,7 +25,6 @@ import {
   PreOrderButtons,
 } from "./styles/styles";
 
-// Add Modal Styled Components
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -55,58 +55,6 @@ const ButtonGroup = styled.div`
   margin-top: 1.5rem;
 `;
 
-
-// Add Modal Props Interface
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onRBUClick: () => void;
-  onOtherClick: () => void;
-}
-
-// Add Modal Component
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onRBUClick, onOtherClick }) => {
-  if (!isOpen) return null;
-
-  return (
-    <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={e => e.stopPropagation()}>
-        <h2>Choose Your College</h2>
-        <ButtonGroup>
-          <PreOrderButtons 
-            as="a" 
-            href="https://forms.gle/R8XeNCTw8JcmV5Wx6" // Replace with actual RBU URL
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              e.preventDefault();
-              onRBUClick();
-              window.open('https://forms.gle/R8XeNCTw8JcmV5Wx6', '_blank'); // Replace with actual RBU URL
-            }}
-          >
-            RBU
-          </PreOrderButtons>
-          
-          <WatchTeaserButtons
-            as="a"
-            href="https://forms.gle/78e64zW9bjt8D1az6" // Replace with actual other college URL
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              e.preventDefault();
-              onOtherClick();
-              window.open('https://forms.gle/78e64zW9bjt8D1az6', '_blank'); // Replace with actual other college URL
-            }}
-            className="text-black"
-          >
-            Other College
-          </WatchTeaserButtons>
-        </ButtonGroup>
-      </ModalContent>
-    </ModalOverlay>
-);
-};
-
 const fadeOut = keyframes`
   from {
     opacity: 1;
@@ -120,9 +68,11 @@ const fadeOut = keyframes`
 const fadeIn = keyframes`
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 `;
 
@@ -145,10 +95,63 @@ const MainContentContainer = styled.div<{ $isLoading: boolean }>`
   height: 100%;
 `;
 
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onRBUClick: () => void;
+  onOtherClick: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  onRBUClick,
+  onOtherClick,
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <ModalOverlay onClick={onClose}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <h2>Choose Your College</h2>
+        <ButtonGroup>
+          <PreOrderButtons
+            as="a"
+            href="https://forms.gle/R8XeNCTw8JcmV5Wx6"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              onRBUClick();
+              window.open("https://forms.gle/R8XeNCTw8JcmV5Wx6", "_blank");
+            }}
+          >
+            RBU
+          </PreOrderButtons>
+
+          <WatchTeaserButtons
+            as="a"
+            href="https://forms.gle/78e64zW9bjt8D1az6"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              onOtherClick();
+              window.open("https://forms.gle/78e64zW9bjt8D1az6", "_blank");
+            }}
+            className="text-black"
+          >
+            Other College
+          </WatchTeaserButtons>
+        </ButtonGroup>
+      </ModalContent>
+    </ModalOverlay>
+  );
+};
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
-  // Add Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -165,24 +168,42 @@ export default function Home() {
     }
   }, [isMounted]);
 
-  // Add Modal Handlers
-  const handleRBUClick = () => {
-    console.log('RBU selected');
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    if (!isLoading) {
+      const timeline = gsap.timeline();
 
-  const handleOtherClick = () => {
-    console.log('Other College selected');
-    setIsModalOpen(false);
-  };
-
-  if (!isMounted) {
-    return (
-      <LoadingContainer $isLoading={true}>
-        <Loading />
-      </LoadingContainer>
-    );
-  }
+      timeline
+        .fromTo(
+          ".item-1",
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, ease: "Back.easeOut.config(1.7)", duration: 0.7 }
+        )
+        .fromTo(
+          ".item-2",
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, ease: "Back.easeOut.config(1.7)", duration: 0.7 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".item-3",
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, ease: "Back.easeOut.config(1.7)", duration: 0.7 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".item-5",
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, ease: "Back.easeOut.config(1.7)", duration: 0.7 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".bg-lines",
+          { opacity: 0 },
+          { opacity: 1, ease: "Power3.easeInOut", duration: 2 },
+          "-=1"
+        );
+    }
+  }, [isLoading]);
 
   return (
     <>
@@ -204,11 +225,11 @@ export default function Home() {
               Gear up for POLARIS, the ultimate tech showdown by GDG! Code,
               quiz, and play your way through thrilling challenges. Test your
               skills, compete for amazing prizes, and have a blast with fellow
-              tech lovers. Ready to shine? Join the adventure! 
+              tech lovers. Ready to shine? Join the adventure!
             </Description>
 
             <WrapperButtons className="item-3">
-              <PreOrderButton>Explore  →</PreOrderButton>
+              <PreOrderButton>Explore</PreOrderButton>
               <WatchTeaserButton onClick={() => setIsModalOpen(true)}>
                 Register Now
               </WatchTeaserButton>
@@ -220,12 +241,11 @@ export default function Home() {
           </WrapperImage>
         </Container>
 
-        {/* Add Modal Component */}
-        <Modal 
+        <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onRBUClick={handleRBUClick}
-          onOtherClick={handleOtherClick}
+          onRBUClick={() => console.log("RBU selected")}
+          onOtherClick={() => console.log("Other College selected")}
         />
       </MainContentContainer>
     </>

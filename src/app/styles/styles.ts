@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import IconMarvel from '@/assets/marvel.svg';
-import IconPlaystation from '@/assets/playstation.svg';
 
 export const Container = styled.section`
   max-width: 1440px;
@@ -362,22 +360,9 @@ export const WrapperPlaystationMarvel = styled.div`
   margin-top: 16px;
 `;
 
-export const PlaystationIcon = styled(IconPlaystation)`
-  width: auto;
-  cursor: pointer;
-`;
-
-export const MarvelIcon = styled(IconMarvel)`
-  width: auto;
-
-  margin-left: 16px;
-
-  cursor: pointer;
-`;
-
 export const Spiderman = styled.img`
   width: 130%;
-  transition: 0.7s ease;
+  transition: 3s ease;
   transform: translate3d(-150px, -50px, 0);
 
   @media screen and (min-width: 1440px) {
