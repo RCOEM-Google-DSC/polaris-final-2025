@@ -214,120 +214,145 @@ export const PreOrderButtons = styled.a`
 `;
 
 export const WatchTeaserButton = styled.a`
-  display: inline-block;
-  background: transparent;
+   display: inline-block;
+background: transparent;
+border-radius: 3px;
+border: 2px solid var(--red);
+
+padding: 10px 32px;
+text-transform: uppercase;
+font-size: 16px; /* Original font size, no change */
+transform: skewX(-10deg);
+transition: 0.7s ease;
+
+overflow: hidden;
+z-index: 700;
+
+position: relative;
+
+margin-left: 16px;
+
+cursor: pointer;
+
+/* For mobile (below 960px) */
+@media screen and (max-width: 960px) {
+  display: inline-block; /* Ensure it's still inline-block on smaller screens */
+  padding: 10px 25px; /* Slightly reduce padding for better fit on mobile */
+  margin-left: 10px; /* Slightly reduce margin for better spacing */
+  transform: skewX(-10deg); /* Keep skew effect */
+}
+
+/* For very small screens (below 480px) */
+@media screen and (max-width: 480px) {
+  padding: 10px 20px; /* Further reduce padding for very small screens */
+  margin-left: 8px; /* Adjust margin for small screens */
+  width: 100%; /* Button becomes full width on mobile */
+  text-align: center; /* Center the text inside button */
+}
+
+&::after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -5px;
+
+  background: linear-gradient(
+    267.72deg,
+    var(--red-light) 0.88%,
+    var(--red) 100%
+  );
   border-radius: 3px;
-  border: 2px solid var(--red);
 
-  padding: 10px 32px;
-  text-transform: uppercase;
+  width: 0%;
+  height: 110%;
+  z-index: -1;
 
-  transform: skewX(-10deg);
   transition: 0.7s ease;
+}
 
-  overflow: hidden;
-  z-index: 700;
+&:hover {
+  box-shadow: 0px 14px 85px rgba(240, 42, 47, 0.06),
+    0px 5.11023px 31.0264px rgba(240, 42, 47, 0.0413989),
+    0px 2.48092px 15.0627px rgba(240, 42, 47, 0.0333774),
+    0px 1.21619px 7.38404px rgba(240, 42, 47, 0.0266226),
+    0px 0.480885px 2.91966px rgba(240, 42, 47, 0.0186011);
 
-  position: relative;
-
-  margin-left: 16px;
-
-  cursor: pointer;
-
-  @media screen and (max-width: 960px) {
-    display: none;
-  }
+  transform: scale(1.05) skewX(-10deg);
 
   &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: -5px;
-
-    background: linear-gradient(
-      267.72deg,
-      var(--red-light) 0.88%,
-      var(--red) 100%
-    );
-    border-radius: 3px;
-
-    width: 0%;
-    height: 110%;
-    z-index: -1;
-
-    transition: 0.7s ease;
+    opacity: 1;
+    width: 120%;
   }
+}
 
-  &:hover {
-    box-shadow: 0px 14px 85px rgba(240, 42, 47, 0.06),
-      0px 5.11023px 31.0264px rgba(240, 42, 47, 0.0413989),
-      0px 2.48092px 15.0627px rgba(240, 42, 47, 0.0333774),
-      0px 1.21619px 7.38404px rgba(240, 42, 47, 0.0266226),
-      0px 0.480885px 2.91966px rgba(240, 42, 47, 0.0186011);
-
-    transform: scale(1.05) skewX(-10deg);
-
-    &::after {
-      opacity: 1;
-      width: 120%;
-    }
-  }
 `;
 
 export const WatchTeaserButtons = styled.a`
   display: inline-block;
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid var(--red);
-  color: #000; // Added black text color
-  padding: 10px 32px;
-  text-transform: uppercase;
-  transform: skewX(-10deg);
-  transition: 0.7s ease;
-  overflow: hidden;
-  z-index: 700;
-  position: relative;
-  margin-left: 16px;
-  cursor: pointer;
+background: transparent;
+border-radius: 3px;
+border: 2px solid var(--red);
+color: #000; /* Keep text black */
+padding: 10px 32px;
+text-transform: uppercase;
+transform: skewX(-10deg);
+transition: 0.7s ease;
+overflow: hidden;
+z-index: 700;
+position: relative;
+margin-left: 16px;
+cursor: pointer;
 
-  @media screen and (max-width: 960px) {
-    display: none;
-  }
+/* Mobile view adjustments */
+@media screen and (max-width: 960px) {
+  display: inline-block; /* Ensure it's still inline-block on smaller screens */
+  padding: 10px 25px; /* Slightly reduce padding for mobile */
+  margin-left: 10px; /* Adjust margin for better spacing on mobile */
+  transform: skewX(-10deg); /* Keep skew effect */
+}
+
+@media screen and (max-width: 480px) {
+  padding: 10px 20px; /* Further reduce padding for very small screens */
+  margin-left: 8px; /* Adjust margin for smaller screens */
+  width: 100%; /* Button becomes full width on small screens */
+  text-align: center; /* Center the text inside button */
+}
+
+&::after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -5px;
+  background: linear-gradient(
+    267.72deg,
+    var(--red-light) 0.88%,
+    var(--red) 100%
+  );
+  border-radius: 3px;
+  width: 0%;
+  height: 110%;
+  z-index: -1;
+  transition: 0.7s ease;
+}
+
+&:hover {
+  color: #000; /* Keep text black even on hover */
+  box-shadow: 0px 14px 85px rgba(240, 42, 47, 0.06),
+    0px 5.11023px 31.0264px rgba(240, 42, 47, 0.0413989),
+    0px 2.48092px 15.0627px rgba(240, 42, 47, 0.0333774),
+    0px 1.21619px 7.38404px rgba(240, 42, 47, 0.0266226),
+    0px 0.480885px 2.91966px rgba(240, 42, 47, 0.0186011);
+
+  transform: scale(1.05) skewX(-10deg);
 
   &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: -5px;
-    background: linear-gradient(
-      267.72deg,
-      var(--red-light) 0.88%,
-      var(--red) 100%
-    );
-    border-radius: 3px;
-    width: 0%;
-    height: 110%;
-    z-index: -1;
-    transition: 0.7s ease;
+    opacity: 1;
+    width: 120%;
   }
+}
 
-  &:hover {
-    color: #000; // Keep text black even on hover
-    box-shadow: 0px 14px 85px rgba(240, 42, 47, 0.06),
-      0px 5.11023px 31.0264px rgba(240, 42, 47, 0.0413989),
-      0px 2.48092px 15.0627px rgba(240, 42, 47, 0.0333774),
-      0px 1.21619px 7.38404px rgba(240, 42, 47, 0.0266226),
-      0px 0.480885px 2.91966px rgba(240, 42, 47, 0.0186011);
-
-    transform: scale(1.05) skewX(-10deg);
-
-    &::after {
-      opacity: 1;
-      width: 120%;
-    }
-  }
 `;
 
 export const WrapperPlaystationMarvel = styled.div`
